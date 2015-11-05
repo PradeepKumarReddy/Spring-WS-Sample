@@ -11,29 +11,13 @@
 							http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 
-	<context:component-scan base-package="com.blog.samples.services" />
 	<context:component-scan base-package="com.sample.services" />
 	<sws:annotation-driven />
 
 	<!--
 		Our test service bean
 	-->
-	<bean id="AccountDetailsService" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition" lazy-init="true">
-        <property name="schemaCollection">
-            <bean class="org.springframework.xml.xsd.commons.CommonsXsdSchemaCollection">
-                <property name="inline" value="true" />
-                <property name="xsds">
-                    <list>
-                        <value>schemas/AccountDetailsServiceOperations.xsd</value>
-                    </list>
-                </property>
-            </bean>
-        </property>
-        <property name="portTypeName" value="AccountDetailsService"/>
-        <property name="serviceName" value="AccountDetailsServices" />
-        <property name="locationUri" value="/endpoints"/>
-    </bean>
-    
+  
     <bean id="EmployeeDetailsService" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition" lazy-init="true">
         <property name="schemaCollection">
             <bean class="org.springframework.xml.xsd.commons.CommonsXsdSchemaCollection">
