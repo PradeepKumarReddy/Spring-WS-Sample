@@ -6,14 +6,14 @@
 //
 
 
-package com.sample.webservices.employeeservice;
+package com.blog.samples.webservices.accountservice;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import com.sample.webservices.Employee;
+import com.blog.samples.webservices.Account;
 
 
 /**
@@ -26,7 +26,7 @@ import com.sample.webservices.Employee;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="EmployeeDetails" type="{http://webservices.sample.com}Employee"/>
+ *         &lt;element name="AccountDetails" type="{http://webservices.samples.blog.com}Account"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,36 +37,36 @@ import com.sample.webservices.Employee;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "employeeDetails"
+    "accountDetails"
 })
-@XmlRootElement(name = "EmployeeDetailsResponse")
-public class EmployeeDetailsResponse {
+@XmlRootElement(name = "AccountDetailsResponse")
+public class AccountDetailsResponse {
 
-    @XmlElement(name = "EmployeeDetails", required = true)
-    protected Employee employeeDetails;
+    @XmlElement(name = "AccountDetails", required = true)
+    protected Account accountDetails;
 
     /**
-     * Gets the value of the employeeDetails property.
+     * Gets the value of the accountDetails property.
      * 
      * @return
      *     possible object is
-     *     {@link Employee }
+     *     {@link Account }
      *     
      */
-    public Employee getEmployeeDetails() {
-        return employeeDetails;
+    public Account getAccountDetails() {
+        return accountDetails;
     }
 
     /**
-     * Sets the value of the employeeDetails property.
+     * Sets the value of the accountDetails property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Employee }
+     *     {@link Account }
      *     
      */
-    public void setEmployeeDetails(Employee value) {
-        this.employeeDetails = value;
+    public void setAccountDetails(Account value) {
+        this.accountDetails = value;
     }
 
 }

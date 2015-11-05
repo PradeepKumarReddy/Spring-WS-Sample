@@ -5,5 +5,5 @@
 // Generated on: 2015.11.05 at 07:12:58 PM IST 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://com/sample/webservices/employeeservice", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package com.sample.webservices.employeeservice;
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://webservices.samples.blog.com", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+package com.blog.samples.webservices;

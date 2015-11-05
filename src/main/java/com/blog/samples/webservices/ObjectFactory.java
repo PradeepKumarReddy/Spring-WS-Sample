@@ -6,7 +6,7 @@
 //
 
 
-package com.sample.webservices;
+package com.blog.samples.webservices;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
@@ -17,7 +17,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the com.sample.webservices package. 
+ * generated in the com.blog.samples.webservices package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -31,30 +31,30 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _Employee_QNAME = new QName("http://webservices.sample.com", "Employee");
+    private final static QName _Account_QNAME = new QName("http://webservices.samples.blog.com", "Account");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.sample.webservices
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.blog.samples.webservices
      * 
      */
     public ObjectFactory() {
     }
 
     /**
-     * Create an instance of {@link Employee }
+     * Create an instance of {@link Account }
      * 
      */
-    public Employee createEmployee() {
-        return new Employee();
+    public Account createAccount() {
+        return new Account();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Employee }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Account }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://webservices.sample.com", name = "Employee")
-    public JAXBElement<Employee> createEmployee(Employee value) {
-        return new JAXBElement<Employee>(_Employee_QNAME, Employee.class, null, value);
+    @XmlElementDecl(namespace = "http://webservices.samples.blog.com", name = "Account")
+    public JAXBElement<Account> createAccount(Account value) {
+        return new JAXBElement<Account>(_Account_QNAME, Account.class, null, value);
     }
 
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xmlns:context="http://www.springframework.org/schema/context"
-		xmlns:sws="http://www.springframework.org/schema/web-services"
-		xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:sws="http://www.springframework.org/schema/web-services"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
 							http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 							http://www.springframework.org/schema/web-services
 							http://www.springframework.org/schema/web-services/web-services-2.0.xsd
@@ -14,24 +14,109 @@
 	<context:component-scan base-package="com.sample.services" />
 	<sws:annotation-driven />
 
-	<!--
-		Our test service bean
-	-->
-  
-    <bean id="EmployeeDetailsService" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition" lazy-init="true">
-        <property name="schemaCollection">
-            <bean class="org.springframework.xml.xsd.commons.CommonsXsdSchemaCollection">
-                <property name="inline" value="true" />
-                <property name="xsds">
-                    <list>
-                        <value>schemas/EmployeeDetailsServiceOperations.xsd</value>
-                    </list>
-                </property>
-            </bean>
-        </property>
-        <property name="portTypeName" value="EmployeeDetailsService"/>
-        <property name="serviceName" value="EmployeeDetailsServices" />
-        <property name="locationUri" value="/endpoints"/>
-    </bean>
+	<!-- Our test service bean -->
+
+	<bean id="EmployeeDetailsService"
+		class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition"
+		lazy-init="true">
+		<property name="schemaCollection">
+			<bean
+				class="org.springframework.xml.xsd.commons.CommonsXsdSchemaCollection">
+				<property name="inline" value="true" />
+				<property name="xsds">
+					<list>
+						<value>schemas/EmployeeDetailsServiceOperations.xsd</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+		<property name="portTypeName" value="EmployeeDetailsService" />
+		<property name="serviceName" value="EmployeeDetailsServices" />
+		<property name="locationUri" value="/endpoints" />
+	</bean>
+
+	<!-- Spring Web services Security Interceptor -->
+	<!-- <sws:interceptors> <bean class="org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor"> 
+		<property name="schema" value="schemas/EmployeeDetailsServiceOperations.xsd" 
+		/> <property name="validateRequest" value="true" /> <property name="validateResponse" 
+		value="true" /> </bean> <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"> 
+		</bean> <bean class="org.springframework.ws.soap.security.wss4j.Wss4jSecurityInterceptor"> 
+		<property name="policyConfiguration" value="/WEB-INF/securityPolicy.xml" 
+		/> <property name="callbackHandlers"> <list> <ref bean="keyStoreHandler" 
+		/> <ref bean="callbackHandler" /> </list> </property> </bean> </sws:interceptors> 
+		<bean id="callbackHandler" class="org.springframework.ws.soap.security.xwss.callback.SimplePasswordValidationCallbackHandler"> 
+		<property name="users"> <props> <prop key="admin">secret</prop> <prop key="clinetUser">pass</prop> 
+		</props> </property> </bean> -->
+
+	<sws:interceptors>
+		<bean id="validatingInterceptor"
+			class="org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor"
+			p:schema="schemas/EmployeeDetailsServiceOperations.xsd" p:validateRequest="true"
+			p:validateResponse="true" />
+
+		<bean id="loggingInterceptor"
+			class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor" />
+
+		<!-- References Chapter 7. Securing your Web services with Spring-WS - 
+			http://static.springsource.org/spring-ws/sites/2.0/reference/html/security.html 
+			7.3. Wss4jSecurityInterceptor - http://static.springsource.org/spring-ws/sites/2.0/reference/html/security.html#security-wss4j-security-interceptor 
+			Apache WSS4J - http://ws.apache.org/wss4j/ Example of SOAP request authenticated 
+			with WS-UsernameToken - http://stackoverflow.com/questions/3448498/example-of-soap-request-authenticated-with-ws-usernametoken -->
+		<bean
+			class="org.springframework.ws.soap.security.wss4j.Wss4jSecurityInterceptor">
+			<property name="validationActions" value="Timestamp UsernameToken" />
+			<property name="securementActions" value="Timestamp UsernameToken" />
+			<property name="timestampPrecisionInMilliseconds" value="true" />
+			<property name="securementUsername" value="mojo" />
+			<property name="securementPassword" value="mojopass" />
+			<property name="securementPasswordType" value="PasswordText" />
+			<property name="securementUsernameTokenElements" value="Nonce Created" />
+			<property name="validationCallbackHandler" ref="callbackHandler" />
+		</bean>
+	</sws:interceptors>
+
+	<!-- a simple callback handler to configure users and passwords with an 
+		in-memory Properties object. -->
+	<bean id="callbackHandler"
+		class="org.springframework.ws.soap.security.wss4j.callback.SimplePasswordValidationCallbackHandler">
+		<property name="users">
+			<props>
+				<prop key="admin">secret</prop>
+				<prop key="user">pass</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 
+	SOAP UI Request
+	
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:emp="http://com/sample/webservices/employeeservice">
+   <soapenv:Header>
+		      <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+		         <wsu:Timestamp wsu:Id="Timestamp-1" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+		            <wsu:Created>2015-11-06T12:43:52.920Z</wsu:Created>
+		            <wsu:Expires>2015-12-06T12:44:52.920Z</wsu:Expires>
+		         </wsu:Timestamp>
+		         <wsse:UsernameToken xmlns:wsu="...">
+		            <wsse:Username>test</wsse:Username>
+		            <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">secret</wsse:Password>
+		         </wsse:UsernameToken>
+		      </wsse:Security>
+		   </soapenv:Header>
+   <soapenv:Body>
+      <emp:EmployeesListRequest/>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+	 -->
+
+	<!-- <sws:interceptors> <sws:payloadRoot namespaceUri="http://com/sample/webservices/employeeservice" 
+		localPart="EmployeesListRequest"> <ref bean="wsServerSecurityInterceptor"/> 
+		</sws:payloadRoot> </sws:interceptors> <bean id="wsServerSecurityInterceptor" 
+		class="org.springframework.ws.soap.security.wss4j.Wss4jSecurityInterceptor"> 
+		<property name="validationActions" value="UsernameToken" /> <property name="validationCallbackHandler"> 
+		<bean id="callbackHandler" class="org.springframework.ws.soap.security.wss4j.callback.SimplePasswordValidationCallbackHandler"> 
+		<property name="users"> <props> <prop key="Bert">Ernie</prop> </props> </property> 
+		</bean> </property> </bean> -->
 
 </beans>
