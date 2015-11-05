@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://com/sample/webservices/employeeservice" xmlns:employee="http://webservices.sample.com" targetNamespace="http://com/sample/webservices/employeeservice" elementFormDefault="qualified">
+	<xsd:import namespace="http://webservices.sample.com" schemaLocation="EmployeeDetails.xsd"/>
+	<xsd:element name="EmployeeDetailsRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="empId" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="EmployeeDetailsResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="EmployeeDetails" type="employee:Employee"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="EmployeesListRequest">
+		<xsd:complexType>
+			
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="EmployeesListResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Employees" type="employee:Employee" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

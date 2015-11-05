@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://webservices.sample.com" targetNamespace="http://webservices.sample.com" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Employee" type="Employee"/>
+	<xs:complexType name="Employee">
+		<xs:sequence>
+			<xs:element name="EmpId" type="xs:int"/>
+			<xs:element name="EmployeeName" type="xs:string"/>
+			<xs:element name="DOB" type="xs:date"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
