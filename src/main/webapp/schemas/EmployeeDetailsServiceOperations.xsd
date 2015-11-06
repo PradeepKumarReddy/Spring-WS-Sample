@@ -27,4 +27,18 @@
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
+		<xsd:element name="SaveEmployeesRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Employees" type="employee:Employee" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="SaveEmployeesResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="message" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
 </xsd:schema>

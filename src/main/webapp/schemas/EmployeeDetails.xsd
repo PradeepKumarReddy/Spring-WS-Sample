@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://webservices.sample.com" targetNamespace="http://webservices.sample.com" elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<xs:element name="Employee" type="Employee"/>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://webservices.sample.com"
+	targetNamespace="http://webservices.sample.com" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:element name="Employee" type="Employee" />
 	<xs:complexType name="Employee">
 		<xs:sequence>
-			<xs:element name="EmpId" type="xs:int"/>
-			<xs:element name="EmployeeName" type="xs:string"/>
-			<xs:element name="DOB" type="xs:date"/>
+			<xs:element name="EmpId" type="xs:int" />
+			<xs:element name="EmployeeName">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="5" />
+						<xs:maxLength value="8" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DOB" type="xs:date" />
 		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

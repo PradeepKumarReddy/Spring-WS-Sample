@@ -9,4 +9,6 @@ public interface EmployeeService {
 	public Employee getEmployeeDetails(String empId);
 	
 	public List<Employee> getEmployeeList();
+	
+	public String saveEmployess(List<Employee> employees) throws Exception;
 }

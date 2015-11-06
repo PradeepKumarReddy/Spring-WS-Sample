@@ -41,8 +41,8 @@ import com.sample.webservices.Employee;
 @XmlType(name = "", propOrder = {
     "employees"
 })
-@XmlRootElement(name = "EmployeesListResponse")
-public class EmployeesListResponse {
+@XmlRootElement(name = "SaveEmployeesRequest")
+public class SaveEmployeesRequest {
 
     @XmlElement(name = "Employees")
     protected List<Employee> employees;

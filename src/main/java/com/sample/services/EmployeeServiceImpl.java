@@ -1,6 +1,7 @@
 package com.sample.services;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -56,6 +57,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		employees.add(employee3);
 		
 		return employees;
+	}
+	
+	public String saveEmployess(List<Employee> employees) throws Exception {
+		System.out.println(Arrays.toString(employees.toArray()));
+		return null;
 	}
 
 }
