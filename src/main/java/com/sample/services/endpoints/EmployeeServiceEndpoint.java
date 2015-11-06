@@ -61,14 +61,10 @@ public class EmployeeServiceEndpoint {
 	 * 
 	 * @param request
 	 * @return
-	 * <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:emp="http://com/sample/webservices/employeeservice" xmlns:web="http://webservices.sample.com"
-		xmlns:ns2="http://webservices.sample.com">
+	 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:emp="http://com/sample/webservices/employeeservice" xmlns:web="http://webservices.sample.com"
+xmlns:ns2="http://webservices.sample.com">
       <soapenv:Header>
 		      <wsse:Security soapenv:mustUnderstand="1" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
-		         <wsu:Timestamp wsu:Id="Timestamp-1" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
-		            <wsu:Created>2015-11-07T12:43:52.920Z</wsu:Created>
-		            <wsu:Expires>2015-12-07T12:44:52.920Z</wsu:Expires>
-		         </wsu:Timestamp>
 		         <wsse:UsernameToken xmlns:wsu="...">
 		            <wsse:Username>admin</wsse:Username>
 		            <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">secret</wsse:Password>

@@ -64,8 +64,8 @@
 			with WS-UsernameToken - http://stackoverflow.com/questions/3448498/example-of-soap-request-authenticated-with-ws-usernametoken -->
 		<bean
 			class="org.springframework.ws.soap.security.wss4j.Wss4jSecurityInterceptor">
-			<property name="validationActions" value="Timestamp UsernameToken" />
-			<property name="securementActions" value="Timestamp UsernameToken" />
+			<property name="validationActions" value="UsernameToken" />
+			<property name="securementActions" value="UsernameToken" />
 			<property name="timestampPrecisionInMilliseconds" value="true" />
 			<property name="securementUsername" value="mojo" />
 			<property name="securementPassword" value="mojopass" />
